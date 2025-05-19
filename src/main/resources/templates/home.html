@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
 <h1>Home Page</h1>
+<h2 th:text="${#authentication.name}"></h2>
 
 <a th:href="@{/users/}">List of Users</a><br>
 <a th:href="@{/lecturers/}">List of Lecturers</a><br>
 <a th:href="@{/courses/}">List of Courses</a><br>
+
+<a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">ADMIN SECTION</a><br>
+
+<br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 
 </body>
 </html>
